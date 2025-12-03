@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Holly Jolly Iron Club</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --red: #c1121f;
+      --green: #2b9348;
+      --gold: #f4b41a;
+      --dark: #111;
+      --light: #fdfdfd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #081c15, #1b4332);
+      color: var(--light);
+    }
+
+    header {
+      background: radial-gradient(circle at top, var(--red), #540b0e);
+      padding: 2.5rem 1rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before,
+    header::after {
+      content: "❄";
+      position: absolute;
+      font-size: 4rem;
+      opacity: 0.3;
+      top: -10px;
+    }
+
+    header::before {
+      left: 10%;
+    }
+    header::after {
+      right: 15%;
+    }
+
+    .logo {
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      max-width: 30rem;
+      margin: 0.25rem auto 1rem;
+    }
+
+    .promo-ribbon {
+      display: inline-block;
+      background: var(--green);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 0.4rem 0.6rem rgba(0,0,0,0.35);
+      border: 2px solid var(--gold);
+    }
+
+    .max-width {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: center;
+      margin-top: -1.2rem;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      header {
+        padding-bottom: 2.5rem;
+      }
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.1rem, 3vw + 1rem, 2.8rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text p {
+      line-height: 1.4;
+      max-width: 32rem;
+    }
+
+    .cta-buttons {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #220901;
+      border-color: #ffe066;
+      box-shadow: 0 0.3rem 0.5rem rgba(0,0,0,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--light);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .hero-card {
+      background: rgba(0,0,0,0.3);
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.2rem 1.1rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 1rem 2.2rem rgba(0,0,0,0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-title {
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: -35px;
+      top: 18px;
+      background: var(--green);
+      color: var(--light);
+      transform: rotate(20deg);
+      padding: 0.3rem 2.8rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0.7rem 1.4rem rgba(0,0,0,0.6);
+    }
+
+    .hero-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-list li {
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-list li::before {
+      content: "🎄";
+      margin-right: 0.35rem;
+    }
+
+    .note {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    section {
+      margin-top: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: rgba(0,0,0,0.4);
+      border-radius: 1.1rem;
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.3rem;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    .badge-red { background: rgba(193,18,31,0.25); border: 1px solid rgba(244,180,26,0.5); }
+    .badge-green { background: rgba(43,147,72,0.25); border: 1px solid rgba(244,180,26,0.5); }
+    .badge-gold { background: rgba(244,180,26,0.2); border: 1px solid rgba(244,180,26,0.7); }
+
+    .price {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .price span {
+      font-size: 0.75rem;
+      opacity: 0.8;
+      font-weight: 500;
+    }
+
+    .muted {
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      background: rgba(0,0,0,0.4);
+      border-radius: 0.8rem;
+      overflow: hidden;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+      padding: 0.55rem 0.6rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .schedule-table th {
+      background: rgba(0,0,0,0.4);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .schedule-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .testimonials {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .quote {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .quote strong {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding: 1.2rem 1rem 2rem;
+      font-size: 0.8rem;
+      text-align: center;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .gift-note {
+      margin-top: 0.5rem;
+      font-style: italic;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">HOLLY JOLLY IRON CLUB</div>
+    <div class="tagline">
+      The only gym where curls, carols, and questionable eggnog pre-workout all happen under one glittering disco snowflake.
+    </div>
+    <div class="promo-ribbon">
+      🎁 LIMITED-LIFETIME HOLIDAY MEMBERSHIP INCLUDED WITH THIS CARD
+    </div>
+  </header>
+
+  <main class="max-width">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Get absolutely <em>sleigh-ed</em> this season.</h1>
+        <p>
+          Welcome to the world’s most festive, overly enthusiastic, probably-not-OSHA-compliant holiday fitness experience.
+          Custom-built for <strong>[RECIPIENT NAME]</strong> and their very powerful holiday muscles.
+        </p>
+
+        <div class="cta-buttons">
+          <a href="#plans" class="btn btn-primary">View Membership “Options”</a>
+          <a href="#schedule" class="btn btn-outline">Browse Festive Class Schedule</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Holiday gains stats">
+        <div class="hero-badge">100% Seasonal Gains</div>
+        <div class="hero-card-title">Your Personalized Holiday Fitness Profile</div>
+        <div class="hero-card-sub">Automatically generated using a proprietary Naughty-or-Nice algorithm.</div>
+
+        <ul class="hero-list">
+          <li>Preferred workout split: “One set, then vibes.”</li>
+          <li>Primary goal: Lift spirits &amp; moderately heavy things.</li>
+          <li>Max sled push: TBD, but emotionally very strong.</li>
+        </ul>
+
+        <div class="note">
+          Note: This membership is valid in all imaginary locations and multiverses. No cancellations permitted; we’re emotionally attached.
+        </div>
+      </aside>
+    </section>
+
+    <section id="plans">
+      <h2>Membership Tiers</h2>
+      <div class="section-subtitle">
+        All plans include unlimited judgment-free rest breaks, optional sing-along warmups, and access to the communal glitter dumbbells.
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="badge badge-green">Starter</div>
+          <h3>Elf Mode</h3>
+          <p class="price">$0 <span>/ month, emotionally priceless</span></p>
+          <p class="muted">
+            For the cozy lifter who believes “showing up mentally” counts as cardio.
+          </p>
+          <ul class="hero-list">
+            <li>Access to Candy Cane Stretching Corner</li>
+            <li>Beginner’s Guide to Carrying All the Groceries in One Trip</li>
+            <li>1x complimentary “I Thought About Working Out” badge</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="badge badge-gold">Most Festive</div>
+          <h3>Grinch Gains</h3>
+          <p class="price">$0 <span>/ month (covered by pure chaos)</span></p>
+          <p class="muted">
+            For the lifter whose heart — and quads — grow three sizes this season.
+          </p>
+          <ul class="hero-list">
+            <li>Holiday Deadlift Workshop: Lifting Emotional Baggage Safely</li>
+            <li>“Slam the Door like a Sled Push” power class</li>
+            <li>Access to Silent Night Heavy Squat Hour</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="badge badge-red">Elite</div>
+          <h3>Eggnog Elite</h3>
+          <p class="price">$0 <span>/ month + 12 cookies</span></p>
+          <p class="muted">
+            For those who believe in progressive overload and progressive snack plates.
+          </p>
+          <ul class="hero-list">
+            <li>VIP access to Mistletoe Mobility Lab</li>
+            <li>Personalized playlist of remixed holiday bangers at 150 bpm</li>
+            <li>Lifetime bragging rights &amp; honorary membership card</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <h2>Festive Class Schedule</h2>
+      <div class="section-subtitle">
+        Times are approximate. Vibes are not.
+      </div>
+
+      <table class="schedule-table" aria-label="Class schedule">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Class</th>
+            <th>Description</th>
+            <th>Intensity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>6:00 AM</td>
+            <td>Jingle Bell HIIT</td>
+            <td>30 minutes of chaos, 30 minutes of laying on the mat rethinking everything.</td>
+            <td>🎄🎄🎄</td>
+          </tr>
+          <tr>
+            <td>10:00 AM</td>
+            <td>Holiday Market Cardio</td>
+            <td>Simulation of weaving through crowds while holding too many bags.</td>
+            <td>🎄🎄</td>
+          </tr>
+          <tr>
+            <td>2:00 PM</td>
+            <td>Cookie Curl Power Hour</td>
+            <td>Bicep curls alternated with cookie tray curls. Spotter not included.</td>
+            <td>🎄🎄🎄🎄</td>
+          </tr>
+          <tr>
+            <td>7:00 PM</td>
+            <td>Candlelit Stretch &amp; Scream</td>
+            <td>Gentle mobility plus a cathartic seasonal yell into the void.</td>
+            <td>🎄</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="testimonials">
+      <h2>Testimonials from Extremely Real Members</h2>
+      <div class="section-subtitle">
+        100% of surveyed participants reported “feeling something, at least.”
+      </div>
+
+      <div class="testimonials">
+        <article class="card">
+          <p class="quote">
+            “Before Holly Jolly Iron Club, I could barely carry all my groceries in one trip.
+            Now I can carry them and a bonus emotional burden.”
+            <strong>— North Pole Local, Probably Real</strong>
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="quote">
+            “The Grinch Gains program gave me the confidence to lift my tree, my spirits,
+            and three entire lasagnas in one evening.”
+            <strong>— Very Serious Athlete</strong>
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="quote">
+            “Five stars. Would absolutely recommend to anyone who enjoys fitness,
+            Christmas, and the delusion that January will be ‘different this time.’”
+            <strong>— Unbiased Reviewer, Definitely Not the Gift Giver</strong>
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© Holly Jolly Iron Club. All rights reserved in the spirit of the season.</div>
+    <div class="gift-note">
+      This entirely fictional membership was lovingly created for <strong>[RECIPIENT NAME]</strong>.
+      May your reps be light and your snacks be heavy. 🎁
+    </div>
+  </footer>
+</body>
+</html>
