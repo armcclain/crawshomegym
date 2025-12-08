@@ -239,33 +239,60 @@
 }
 
 
-
 /* Mobile / small screens */
 @media (max-width: 800px) {
   body {
-    background-attachment: scroll;      /* fixed is janky on mobile */
-    background-size: 160% auto;         /* a bit zoomed so art fills */
-    background-position: 100% top;      /* start on RIGHT side */
+    /* remove the direct background on body for mobile, but keep cursor etc. */
+    background: none;
+    position: relative;
+    overflow-x: hidden;
   }
 
+  /* Fixed full-screen background layer */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.15)
+      ),
+      url("chg.png");
+    background-size: 160% auto;        /* zoom a bit so room fills */
+    background-repeat: no-repeat;
+    background-position: var(--bg-x, 100%) top;  /* controlled by JS */
+    pointer-events: none;
+  }
+
+  /* Top hero section layout on mobile */
   .max-width {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    padding: 2rem 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   /* bottom third */
+    gap: 1.25rem;
+    min-height: 100vh;           /* full screen */
   }
 
   .box-left,
   .box-right {
-    grid-column: 1;
+    grid-column: auto;
     justify-self: stretch;
-    margin: 0 0 1.25rem 0;
+    margin: 0;
   }
 
   .overlay-box {
     padding: 1.5rem;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
   }
 
-  /* Put content toward the bottom third of each full-height panel */
+  /* Membership + schedule sections also full-height with content at bottom */
   .center-section {
     min-height: 100vh;
     display: flex;
@@ -277,6 +304,7 @@
   .center-box {
     max-width: 480px;
     width: 100%;
+    padding: 1.75rem;
   }
 }
 
@@ -485,7 +513,8 @@ button:hover,
         const endX   = 0;    // left side
         const posX = startX + (endX - startX) * progress;
     
-        document.body.style.backgroundPosition = posX + "% top";
+        document.body.style.setProperty("--bg-x", posX + "%");
+
       }
     
       window.addEventListener("scroll", updateBg, { passive: true });
