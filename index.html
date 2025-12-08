@@ -56,6 +56,33 @@
   backdrop-filter: none;
 }
 
+    .center-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+.center-box {
+  background: rgba(22, 22, 22, 0.98); /* fully opaque */
+  color: #fdfdfd;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  box-shadow: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.85);
+  max-width: 760px;
+  width: 100%;
+}
+
+.center-box h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
     .box-left {
       grid-column: 1;
       justify-self: start;
@@ -198,6 +225,48 @@
     </footer>
 
   </main>
+
+  <section class="center-section">
+
+  <div class="center-box">
+    <h2>Craw’s Class Schedule</h2>
+
+    <table style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+      <thead>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.25);">
+          <th style="text-align:left; padding-bottom: 0.5rem;">Time</th>
+          <th style="text-align:left; padding-bottom: 0.5rem;">Class</th>
+          <th style="text-align:left; padding-bottom: 0.5rem;">Intensity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.55rem 0;">6:00 AM</td>
+          <td>Only Pullups</td>
+          <td>🦞🦞🦞</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.55rem 0;">10:00 AM</td>
+          <td> It's Pushups but You Stand on Your Head</td>
+          <td>🦞🦞</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.55rem 0;">2:00 PM</td>
+          <td>Upside-Down Overhead Bench</td>
+          <td>🦞🦞🦞🦞</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.55rem 0;">7:00 PM</td>
+          <td>Movie Bracket Mobility</td>
+          <td>🦞</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</section>
+
 
 </body>
 </html>
