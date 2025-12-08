@@ -27,12 +27,12 @@
         ),
         url("chg.png");
       background-size: cover;
-      background-position: center;   /* desktop: centered framing */
+      background-position: center;   /* desktop framing */
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: var(--text-main);
       min-height: 100vh;
-      cursor: url("claw.png") 16 16, auto; /* default cursor */
+      cursor: url("claw.png") 16 16, auto;
     }
 
     .max-width {
@@ -40,7 +40,7 @@
       margin: 0 auto;
       padding: 3rem 1.5rem;
       display: grid;
-      grid-template-columns: 1.3fr 2fr 1.3fr; /* left / center / right */
+      grid-template-columns: 1.3fr 2fr 1.3fr;
       gap: 2rem;
       align-items: center;
       min-height: 100vh; 
@@ -267,7 +267,7 @@
       }
 
       .panel {
-        flex: 0 0 100vw;
+        flex: 0 0 100vw;       /* one panel per viewport width */
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -278,15 +278,15 @@
         scroll-snap-align: start;
       }
 
-      /* Inside each panel, keep content narrow */
+      /* Inside each panel, keep content narrow-ish */
       .max-width,
       .center-section {
         max-width: 480px;
         width: 100%;
         margin: 0 auto;
         padding: 0;
-        display: block;
         min-height: auto;
+        display: block;
       }
 
       .overlay-box,
@@ -305,7 +305,7 @@
       }
     }
 
-    /* Force custom click cursor on ALL clickable elements */
+    /* Click cursor */
     a, 
     a:hover,
     button, 
@@ -481,7 +481,7 @@
         const maxScroll = panels.scrollWidth - panels.clientWidth;
         const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
 
-        // Start on right (100%), end on left (0%)
+        // Start on right (100%), end on left (0)
         const startX = 100;
         const endX = 0;
         const posX = startX + (endX - startX) * progress;
