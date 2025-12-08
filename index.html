@@ -41,7 +41,7 @@
       margin: 0 auto;
       padding: 3rem 1.5rem;
       display: grid;
-      grid-template-columns: 0.8fr 2fr 0.8fr;; /* left / center / right */
+      grid-template-columns: 1fr 2fr 1fr;; /* left / center / right */
       gap: 2rem;
       align-items: center;
       min-height: 100vh; 
@@ -118,27 +118,31 @@
     }
 
     /* Mobile / small screens */
-    @media (max-width: 800px) {
-      .max-width {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 2rem 1rem;
-      }
+@media (max-width: 800px) {
+  body {
+    background-attachment: scroll;   /* fixes iOS cropping issues */
+    background-position: center top; /* shows more of the room */
+    background-size: contain;        /* shows more image instead of cropping */
+  }
 
-      .box-left,
-      .box-right {
-        grid-column: 1;
-        justify-self: stretch;
-      }
+  .max-width {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
 
-      .overlay-box {
-        padding: 1.5rem;
-      }
+  .box-left,
+  .box-right {
+    grid-column: 1;
+    justify-self: stretch;
+    margin: 0;
+  }
 
-      .footer {
-        grid-column: 1;
-      }
-    }
+  .overlay-box {
+    padding: 1.5rem;
+  }
+}
+
   </style>
 </head>
 
@@ -162,7 +166,7 @@
          Membership includes living therefore, cheerfully, although there be no lasting joy in mortal things, whose substance is evanescent, inane, and vacuous.
 
       <span class="ribbon">
-      <strong>Status:</strong> You are now spiritually enrolled. There is no cancellation process.
+      <strong>Offers:</strong> It's simply TOO good.
       </span>
     </section>
 
