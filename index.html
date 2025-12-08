@@ -248,20 +248,25 @@
     overflow-y: hidden;
     width: 100vw;
     height: 100vh;
-    gap: 1rem;                 /* space between panels so bg peeks through */
     padding: 1.5rem 0 2.5rem;
     -webkit-overflow-scrolling: touch;
-    scroll-snap-type: none;    /* no snapping – continuous scroll */
+    scroll-snap-type: none;    /* no snapping */
+    gap: 0;                    /* we'll create the big gap with margin */
   }
 
   .panel {
-    flex: 0 0 85vw;            /* slightly narrower than full width */
+    flex: 0 0 100vw;           /* full viewport width per panel */
     height: 100%;
     padding: 1.5rem 1rem 2.5rem;
     display: flex;
-    align-items: flex-end;     /* keep card near bottom */
-    justify-content: center;
+    align-items: center;       /* ⭐ center the card vertically */
+    justify-content: center;   /* center horizontally */
     box-sizing: border-box;
+  }
+
+  /* add a full-screen background gap before every panel after the first */
+  .panel + .panel {
+    margin-left: 100vw;        /* 1 full screen of pure background */
   }
 
   .overlay-box,
@@ -278,8 +283,8 @@
     border: 1px solid rgba(214, 194, 90, 0.7);
     box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.85);
 
-    max-height: none;          /* let content flow */
-    overflow-y: visible;
+    max-height: 60vh;          /* adjust if needed */
+    overflow-y: auto;          /* scroll inside the card */
   }
 }
 
