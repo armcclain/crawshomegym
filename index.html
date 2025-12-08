@@ -18,24 +18,22 @@
       box-sizing: border-box;
     }
 
-    
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        linear-gradient(
-          rgba(255, 255, 255, 0.15),
-          rgba(255, 255, 255, 0.15)
-        
-        ),
-        url("chg.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: var(--text-main);
-      min-height: 100vh;
-    }
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15)
+    ),
+    url("chg.png");
+  background-size: cover;
+  background-position: center top;   /* desktop default */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+}
 
     .max-width {
       max-width: 1300px;
@@ -243,63 +241,45 @@
 
 
 /* Mobile / small screens */
-/* Mobile / small screens */
 @media (max-width: 800px) {
-  /* Remove big desktop background from body on mobile */
   body {
-    background-image: none;
-    background-color: #111;
+    background-attachment: scroll;      /* fixed is janky on mobile */
+    background-size: 160% auto;         /* a bit zoomed so art fills */
+    background-position: 100% top;      /* start on RIGHT side */
   }
 
-  /* Each big panel gets the room background and fills the screen */
-  .panel {
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-end;       /* text toward bottom */
-    justify-content: center;
-    padding: 2rem 1rem 3rem;     /* bottom padding = bottom third feel */
-
-    background-image: url("chg.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: top;
-  }
-
-  /* Start on the RIGHT side of the room */
-  .panel-hero {
-    background-position-x: 100%;
-  }
-
-  /* Middle scroll position */
-  .panel-membership {
-    background-position-x: 60%;
-  }
-
-  /* Furthest LEFT by the time you hit the schedule */
-  .panel-schedule {
-    background-position-x: 20%;
-  }
-
-  /* Let content stack nicely and stay centered */
   .max-width {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0;
-    display: block;              /* no grid on mobile */
-  }
-
-  .overlay-box,
-  .center-box {
-    width: 100%;
-    max-width: 480px;
-    padding: 1.75rem;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 2rem 1rem;
   }
 
   .box-left,
   .box-right {
-    margin: 0 0 1.25rem 0;       /* stacked boxes with a bit of gap */
+    grid-column: 1;
+    justify-self: stretch;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .overlay-box {
+    padding: 1.5rem;
+  }
+
+  /* Put content toward the bottom third of each full-height panel */
+  .center-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 2rem 1rem 3rem;
+  }
+
+  .center-box {
+    max-width: 480px;
+    width: 100%;
   }
 }
+
 
 
 
@@ -487,5 +467,34 @@ button:hover,
   <div>
   </div>
   
+  <script>
+    (function () {
+      function updateBg() {
+        // Only do this on mobile-ish widths
+        if (window.innerWidth > 800) return;
+    
+        const doc = document.documentElement;
+        const scrollTop = window.scrollY || doc.scrollTop || 0;
+        const maxScroll = doc.scrollHeight - window.innerHeight;
+    
+        // progress = 0 at top, 1 at bottom
+        const progress = maxScroll > 0 ? scrollTop / maxScroll : 0;
+    
+        // Start on right (100%), end on left (0%)
+        const startX = 100;  // right side
+        const endX   = 0;    // left side
+        const posX = startX + (endX - startX) * progress;
+    
+        document.body.style.backgroundPosition = posX + "% top";
+      }
+    
+      window.addEventListener("scroll", updateBg, { passive: true });
+      window.addEventListener("resize", updateBg);
+      updateBg();
+    })();
+    </script>
+    
+
+
 </body>
 </html>
