@@ -8,7 +8,7 @@
   <style>
     :root {
       --text-main: #fdfdfd;
-      --border-soft: rgba(243, 240, 196, 0.35);
+      --border-soft: rgba(255, 255, 255, 0.35);
     }
 
     * {
@@ -20,8 +20,8 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
         linear-gradient(
-          rgba(10, 9, 48, 0.65),
-          rgba(10, 9, 48, 0.85)
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.35)
         ),
         url("chg.png");
       background-size: cover;
@@ -33,21 +33,33 @@
     }
 
     .max-width {
-      max-width: 1080px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 3rem 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
+      padding: 3rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr; /* left / center / right */
+      gap: 2rem;
+      align-items: center;
+      min-height: 100vh;
     }
 
     .overlay-box {
-      background: rgba(10, 9, 48, 0.78);
+      background: rgba(12, 12, 12, 0.45); /* semi-transparent glass */
       border-radius: 1.25rem;
       padding: 2rem;
       border: 1px solid var(--border-soft);
-      box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
+      box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+    }
+
+    .box-left {
+      grid-column: 1;
+      justify-self: start;
+    }
+
+    .box-right {
+      grid-column: 3;
+      justify-self: end;
     }
 
     h1 {
@@ -92,22 +104,35 @@
       margin-bottom: 0.4rem;
     }
 
-    footer {
+    .footer {
+      grid-column: 1 / -1; /* span all three columns */
       text-align: center;
       font-size: 0.8rem;
       opacity: 0.85;
-      margin-top: 3rem;
+      margin-top: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     }
 
-    /* Mobile spacing */
-    @media (max-width: 700px) {
+    /* Mobile / small screens */
+    @media (max-width: 800px) {
       .max-width {
+        grid-template-columns: 1fr;
+        min-height: auto;
         padding: 2rem 1rem;
-        gap: 2rem;
+      }
+
+      .box-left,
+      .box-right {
+        grid-column: 1;
+        justify-self: stretch;
       }
 
       .overlay-box {
         padding: 1.5rem;
+      }
+
+      .footer {
+        grid-column: 1;
       }
     }
   </style>
@@ -117,8 +142,8 @@
 
   <main class="max-width">
 
-    <!-- OVERLAY BOX 1: HERO / INTRO -->
-    <section class="overlay-box">
+    <!-- LEFT BOX -->
+    <section class="overlay-box box-left">
       <h1>Craw's Home Gym</h1>
 
       <div class="tagline">
@@ -135,16 +160,16 @@
       </span>
     </section>
 
-    <!-- OVERLAY BOX 2: DETAILS -->
-    <section class="overlay-box">
+    <!-- RIGHT BOX -->
+    <section class="overlay-box box-right">
       <h2>Membership Includes</h2>
 
       <ul>
         <li>Unlimited access to Craw’s Highly Subjective Training Philosophy</li>
         <li>Movie Bracket Cardio (emotionally demanding)</li>
-        <li>Upside-Down Overhead Bench Presses (legally questionable)</li>
+        <li>Intro to Upside-Down Overhead Bench Presses (legally questionable)</li>
         <li>Mobility, logic puzzles, and surprise lobster references</li>
-        <li>Priority bag-lifting before international travel</li>
+        <li>Priority bag-lifting preparation before international field travel</li>
       </ul>
 
       <p>
@@ -157,7 +182,7 @@
       </p>
     </section>
 
-    <footer>
+    <footer class="footer">
       © Craw's Home Gym · All Rights Reserved · Real Website Energy, Prank Intentions
     </footer>
 
