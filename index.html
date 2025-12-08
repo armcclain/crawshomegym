@@ -97,6 +97,45 @@
   text-transform: uppercase;
 }
 
+    /* --- Membership / Schedule Table Spacing --- */
+
+.center-box table {
+  width: 100%;
+  border-collapse: separate;    /* REQUIRED for spacing to work */
+  border-spacing: 0 1.1rem;     /* vertical space between rows */
+  font-size: 0.95rem;
+}
+
+.center-box thead tr {
+  border-bottom: none;
+}
+
+.center-box thead th {
+  text-align: left;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.center-box tbody tr {
+  background: rgba(255, 255, 255, 0.035); /* subtle row block */
+}
+
+.center-box td {
+  padding: 0.75rem 0.7rem;  /* internal breathing room */
+  vertical-align: top;
+}
+
+/* soften row corners so they feel like individual cards */
+.center-box tbody tr td:first-child {
+  border-top-left-radius: 0.45rem;
+  border-bottom-left-radius: 0.45rem;
+}
+
+.center-box tbody tr td:last-child {
+  border-top-right-radius: 0.45rem;
+  border-bottom-right-radius: 0.45rem;
+}
+
 
     .box-left {
       grid-column: 1;
@@ -306,7 +345,7 @@
       <tbody>
         <tr>
           <td style="padding: 0.55rem 0;">Craw's Slug Club</td>
-          <td> Sometimes, you just gotta be a slug. <strong>Perks:</strong> Unlimited access to Craw's finest floor mats, and kinesiologist approved couches. Challenges: No sitting in regular chairs for the duration of membership. </td>
+          <td> Sometimes, you just gotta be a slug. <strong>Perks:</strong> Unlimited access to Craw's finest floor mats, and kinesiologist approved couches. <strong>Challenges:</strong> No sitting in regular chairs for the duration of membership. </td>
           <td>🦞🦞🦞</td>
         </tr>
         
@@ -315,7 +354,7 @@
        
         <tr>
           <td style="padding: 0.55rem 0;"> Craw's Barre Crawl </td>
-          <td> Calisthenics, It's What's for Dinner! <strong>Perks:</strong> If you've ever wanted to hear Tracy Chapman's Fast Car as a club remix, we've got your back! Challenges: You aren't allowed to correct your friends and family who think you're going on a Bar Crawl 3 times a week.  </td>
+          <td> Calisthenics, It's What's for Dinner! <strong>Perks:</strong> If you've ever wanted to hear Tracy Chapman's Fast Car as a club remix, we've got your back! <strong>Challenges:</strong> You aren't allowed to correct your friends and family who think you're going on a Bar Crawl 3 times a week.  </td>
           <td>🦞🦞</td>
         </tr>
                 
