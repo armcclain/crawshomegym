@@ -214,7 +214,8 @@ x<!DOCTYPE html>
     /* touch claw cursor for mobile */
 #touch-cursor {
   position: fixed;
-
+  width: 24px;       /* or 48px if you want smaller */
+  height: 32px;
   background: url("claw.png") no-repeat center;
   background-size: contain;
   pointer-events: none;
@@ -622,14 +623,14 @@ button:hover,
     © Craw's Home Gym · All Rights Reserved <br> 
     · Life is short, bits are eternal ·
   </footer>
+  <div id="touch-cursor"></div>
 
- <script>
+  <script>
     (function () {
       function updateBgFromPanels() {
         const panels = document.querySelector(".mobile-panels");
         if (!panels) return;
 
-        // Only on mobile-ish widths
         if (window.innerWidth > 800) {
           document.body.style.removeProperty("--bg-x");
           return;
@@ -639,7 +640,6 @@ button:hover,
         const maxScroll = panels.scrollWidth - panels.clientWidth;
         const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
 
-        // Start on right (100%), end on left (0)
         const startX = 100;
         const endX = 0;
         const posX = startX + (endX - startX) * progress;
@@ -656,12 +656,11 @@ button:hover,
       updateBgFromPanels();
     })();
 
-    // 🔻 NEW: touch claw cursor logic
+    // 🔻 touch claw cursor logic
     (function () {
       const touchCursor = document.getElementById("touch-cursor");
       if (!touchCursor) return;
 
-      // only run on touch-capable devices
       if (!("ontouchstart" in window)) return;
 
       document.addEventListener(
@@ -671,7 +670,6 @@ button:hover,
           touchCursor.style.display = "block";
           touchCursor.style.left = touch.clientX + "px";
           touchCursor.style.top = touch.clientY + "px";
-          // pinch version on touch
           touchCursor.style.backgroundImage = 'url("claw_closed.png")';
         },
         { passive: true }
@@ -691,14 +689,11 @@ button:hover,
         "touchend",
         () => {
           touchCursor.style.display = "none";
-          // reset to open claw for next time
           touchCursor.style.backgroundImage = 'url("claw.png")';
         },
         { passive: true }
       );
     })();
   </script>
-
-  <div id="touch-cursor"></div>
 </body>
 </html>
