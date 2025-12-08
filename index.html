@@ -102,13 +102,6 @@
   font-weight: 700;
 }
 
- .center-box tbody tr td:first-child {
-  text-align: center;
-  color: #d6c25a;
-  font-weight: 700;
-
-}
-
     /* --- Membership / Schedule Table Spacing --- */
 
 .center-box table {
@@ -128,16 +121,23 @@
   border-bottom: 1px solid rgba(255,255,255,0.25);
 }
 
-.center-box tbody tr {
-  background: rgba(255, 255, 255, 0.035); /* subtle row block */
+.center-box tbody tr td:first-child {
+  text-align: center;
+  color: #d6c25a;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;    
+  justify-content: center; 
+
+  padding: 0.75rem 0.6rem; 
 }
 
 .center-box td {
-  padding: 0.75rem 0.7rem;  /* internal breathing room */
+  padding: 0.75rem 0.7rem;  
   vertical-align: top;
 }
 
-/* soften row corners so they feel like individual cards */
 .center-box tbody tr td:first-child {
   border-top-left-radius: 0.45rem;
   border-bottom-left-radius: 0.45rem;
@@ -365,19 +365,12 @@
           
         
         </tr>
-   
-        <tr>
-          <td style="padding: 0.55rem 0;">2:00 PM</td>
-          <td style="line-height: 1.7;">Upside-Down Overhead Bench</td>
-      
-        </tr>
-                
-        <tr>
-        </tr>
+
+    
        
         <tr>
           <td style="padding: 0.55rem 0;">Hardcore Craw</td>
-          <td style="line-height: 1.7;">Movie Bracket Mobility</td>
+          <td style="line-height: 1.7;">Do you have what it takes to become the ultimate Craw? At this level you'll gain access to our toughest challenges. <strong>Perks:</strong> free headset included! <strong>Challenges:</strong> You'll undergo the full gauntlet of Craw's toughest excercises while <i>Hardcore Henry </i>i> streams continuously in one ear and Prof Craw gives you math problems to solve in the other. 
 
         </tr>
       </tbody>
