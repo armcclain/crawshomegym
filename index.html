@@ -5,582 +5,163 @@
   <title>Craw's Home Gym</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
   <style>
     :root {
-      /* Core palette pulled from your card */
-      --indigo-deep: #1F1B6D;
-      --indigo-slate: #3A358A;
-      --navy-dark: #0D0A44;
-      --olive-yellow: #C9C26A;
-      --pale-yellow: #F3F0C4;
-      --smoky-gray: #7A7466;
-
-      --bg-dark: #0D0A44;
-      --text-main: #FDFDFD;
+      --text-main: #fdfdfd;
+      --border-soft: rgba(243, 240, 196, 0.35);
     }
 
     * {
       box-sizing: border-box;
     }
 
-    
-
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      /* Match the card gradient */
-      background: linear-gradient(
-        180deg,
-        var(--indigo-deep) 0%,
-        var(--indigo-slate) 32%,
-        var(--smoky-gray) 58%,
-        var(--olive-yellow) 80%,
-        var(--pale-yellow) 100%
-      );
+      background:
+        linear-gradient(
+          rgba(10, 9, 48, 0.65),
+          rgba(10, 9, 48, 0.85)
+        ),
+        url("chg.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: var(--text-main);
-    }
-
-    header {
-      background: radial-gradient(circle at top, var(--indigo-deep), var(--navy-dark));
-      padding: 2.5rem 1rem 1.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
-    }
-
-    header::before,
-    header::after {
-      content: "";
-      position: absolute;
-      font-size: 3.5rem;
-      opacity: 0.22;
-      top: -6px;
-      color: #D7D2A0; /* soft math-symbol beige */
-    }
-
-    header::before {
-      left: 8%;
-    }
-    header::after {
-      right: 12%;
-    }
-
-  
-      .site-logo {
-        max-width: 360px;
-        width: 100%;
-        height: auto;
-        margin-bottom: 0.75rem;
-         filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.75));
-}
-    .logo {
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 1.7rem;
-      margin-bottom: 0.4rem;
-      color: var(--pale-yellow);
-      text-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
-    }
-
-    .tagline {
-      font-size: 1.02rem;
-      max-width: 30rem;
-      margin: 0.25rem auto 1rem;
-      color: rgba(255, 255, 255, 0.88);
-    }
-
-    .promo-ribbon {
-      display: inline-block;
-      background: rgba(12, 9, 68, 0.9);
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.65);
-      border: 1px solid rgba(243, 240, 196, 0.75);
-      color: var(--pale-yellow);
+      min-height: 100vh;
     }
 
     .max-width {
-      max-width: 1100px;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 1.5rem 1rem 3rem;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 1.5rem;
-      align-items: center;
-      margin-top: -1.2rem;
-    }
-
-    @media (max-width: 800px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-      header {
-        padding-bottom: 2.5rem;
-      }
-    }
-
-    .hero-text h1 {
-      font-size: clamp(2.1rem, 3vw + 1rem, 2.8rem);
-      margin-bottom: 0.5rem;
-      color: #FDFCF7;
-    }
-
-    .hero-text p {
-      line-height: 1.45;
-      max-width: 32rem;
-      color: rgba(255, 255, 255, 0.92);
-    }
-
-    .cta-buttons {
-      margin-top: 1.1rem;
+      padding: 3rem 1.25rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+      flex-direction: column;
+      gap: 2.5rem;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.6rem 1.05rem;
-      border-radius: 999px;
-      border: 2px solid transparent;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.08s ease-out, box-shadow 0.1s ease-out, background 0.12s ease-out;
-    }
-
-    .btn-primary {
-      background: var(--olive-yellow);
-      color: var(--navy-dark);
-      border-color: rgba(253, 252, 247, 0.85);
-      box-shadow: 0 0.35rem 0.9rem rgba(0, 0, 0, 0.6);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0.55rem 1.4rem rgba(0, 0, 0, 0.75);
-      background: #D1CB74;
-    }
-
-    .btn-outline {
-      background: rgba(4, 4, 40, 0.3);
-      color: #FDFCF7;
-      border-color: rgba(243, 240, 196, 0.7);
-    }
-
-    .btn-outline:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.65);
-      background: rgba(12, 9, 68, 0.78);
-    }
-
-    .hero-card {
-      background: rgba(10, 9, 48, 0.86);
-      border-radius: 1.5rem;
-      padding: 1.2rem 1.2rem 1.1rem;
-      border: 1px solid rgba(243, 240, 196, 0.35);
+    .overlay-box {
+      background: rgba(10, 9, 48, 0.78);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      border: 1px solid var(--border-soft);
       box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.75);
-      position: relative;
-      overflow: hidden;
+      backdrop-filter: blur(6px);
     }
 
-    .hero-card-title {
-      font-weight: 700;
-      margin-bottom: 0.2rem;
-      font-size: 1.1rem;
-      color: #FDFCF7;
-    }
-
-    .hero-card-sub {
-      font-size: 0.85rem;
-      opacity: 0.85;
-      margin-bottom: 0.8rem;
-      color: rgba(243, 240, 196, 0.9);
-    }
-
-    .hero-badge {
-      position: absolute;
-      right: -35px;
-      top: 18px;
-      background: var(--indigo-slate);
-      color: var(--pale-yellow);
-      transform: rotate(18deg);
-      padding: 0.3rem 2.8rem;
-      font-size: 0.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
+    h1 {
+      margin-top: 0;
+      font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
       letter-spacing: 0.08em;
-      border: 1px solid rgba(243, 240, 196, 0.8);
-      box-shadow: 0 0.7rem 1.6rem rgba(0, 0, 0, 0.7);
-    }
-
-    .hero-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 0.6rem;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-list li {
-      margin-bottom: 0.3rem;
-    }
-
-    .hero-list li::before {
-      content: "🦞";
-      margin-right: 0.35rem;
-    }
-
-    .note {
-      font-size: 0.75rem;
-      opacity: 0.8;
-      color: rgba(243, 240, 196, 0.85);
-    }
-
-    section {
-      margin-top: 2.5rem;
+      text-transform: uppercase;
     }
 
     h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.2rem;
-      color: #FDFCF7;
-    }
-
-    .section-subtitle {
-      font-size: 0.9rem;
-      opacity: 0.9;
-      margin-bottom: 1.1rem;
-      color: rgba(243, 240, 196, 0.9);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: rgba(14, 11, 68, 0.82);
-      border-radius: 1.1rem;
-      padding: 1rem;
-      border: 1px solid rgba(243, 240, 196, 0.3);
-      box-shadow: 0 0.7rem 1.7rem rgba(0, 0, 0, 0.7);
-    }
-
-    .card h3 {
       margin-top: 0;
-      margin-bottom: 0.3rem;
-      font-size: 1.1rem;
-      color: #FDFCF7;
+      font-size: 1.5rem;
     }
 
-    .badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      margin-bottom: 0.4rem;
-      font-weight: 700;
-      color: var(--pale-yellow);
-    }
-
-    .badge-red {
-      background: rgba(155, 37, 57, 0.25);
-      border: 1px solid rgba(243, 240, 196, 0.55);
-    }
-
-    .badge-green {
-      background: rgba(58, 53, 138, 0.4);
-      border: 1px solid rgba(243, 240, 196, 0.55);
-    }
-
-    .badge-gold {
-      background: rgba(201, 194, 106, 0.35);
-      border: 1px solid rgba(243, 240, 196, 0.75);
-    }
-
-    .price {
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--pale-yellow);
-    }
-
-    .price span {
-      font-size: 0.75rem;
-      opacity: 0.9;
-      font-weight: 500;
-      color: rgba(243, 240, 196, 0.9);
-    }
-
-    .muted {
-      font-size: 0.8rem;
-      opacity: 0.85;
-      color: rgba(243, 240, 196, 0.85);
-    }
-
-    .schedule-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      background: rgba(10, 9, 48, 0.9);
-      border-radius: 0.8rem;
-      overflow: hidden;
-      box-shadow: 0 0.7rem 1.8rem rgba(0, 0, 0, 0.7);
-    }
-
-    .schedule-table th,
-    .schedule-table td {
-      padding: 0.55rem 0.6rem;
-      text-align: left;
-      border-bottom: 1px solid rgba(243, 240, 196, 0.15);
-    }
-
-    .schedule-table th {
-      background: rgba(15, 13, 72, 0.95);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: rgba(243, 240, 196, 0.95);
-    }
-
-    .schedule-table tr:nth-child(even) td {
-      background: rgba(20, 17, 80, 0.85);
-    }
-
-    .schedule-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .testimonials {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-
-    .quote {
-      font-size: 0.9rem;
+    p {
       line-height: 1.5;
-      color: rgba(243, 240, 196, 0.95);
+      max-width: 42rem;
     }
 
-    .quote strong {
-      display: block;
-      margin-top: 0.6rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      opacity: 0.92;
-      color: var(--pale-yellow);
+    .tagline {
+      font-size: 1.05rem;
+      opacity: 0.95;
+      margin-bottom: 1rem;
+    }
+
+    .ribbon {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid var(--border-soft);
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
     }
 
     footer {
-      border-top: 1px solid rgba(243, 240, 196, 0.3);
-      padding: 1.2rem 1rem 2rem;
-      font-size: 0.8rem;
       text-align: center;
-      background: rgba(10, 9, 48, 0.9);
-      color: rgba(243, 240, 196, 0.9);
-      box-shadow: 0 -0.6rem 1.6rem rgba(0, 0, 0, 0.7);
+      font-size: 0.8rem;
+      opacity: 0.85;
+      margin-top: 3rem;
     }
 
-    .gift-note {
-      margin-top: 0.5rem;
-      font-style: italic;
-      opacity: 0.9;
-      color: rgba(243, 240, 196, 0.9);
-    }
+    /* Mobile spacing */
+    @media (max-width: 700px) {
+      .max-width {
+        padding: 2rem 1rem;
+        gap: 2rem;
+      }
 
+      .overlay-box {
+        padding: 1.5rem;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <header>
-    <img src="/logo.png" alt="Craw's Home Gym Logo" class="site-logo">
-    <div class="tagline">
-    Text Holder
-    </div>
-    <div class="promo-ribbon">
-     Text Holder
-    </div>
-  </header>
 
   <main class="max-width">
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Text Holder</h1>
-        <p>
-        Text Holder
-        </p>
 
-        <div class="cta-buttons">
-          <a href="#plans" class="btn btn-primary">View Membership “Options”</a>
-          <a href="#schedule" class="btn btn-outline">Browse Craw's Class Schedule</a>
-        </div>
+    <!-- OVERLAY BOX 1: HERO / INTRO -->
+    <section class="overlay-box">
+      <h1>Craw's Home Gym</h1>
+
+      <div class="tagline">
+        The only gym where curls, carols, and questionable pre-workout decisions all happen under one extremely unofficial roof.
       </div>
 
-      <aside class="hero-card" aria-label="Holiday gains stats">
-        <div class="hero-badge">Text Holder</div>
-        <div class="hero-card-title">Text Holder</div>
-        <div class="hero-card-sub">Text Holder</div>
+      <p>
+        Welcome to the world’s most festive, overly enthusiastic, probably-not-OSHA-compliant home fitness experience.
+        Custom-built for <strong>[RECIPIENT NAME]</strong> and their very powerful seasonal muscles.
+      </p>
 
-        <ul class="hero-list">
-          <li>Text Holder</li>
-          <li>Text Holder</li>
-          <li>Text Holder</li>
-        </ul>
-
-        <div class="note">
-          Note: Text Holder
-        </div>
-      </aside>
+      <span class="ribbon">
+        🎁 Limited-Lifetime Holiday Membership Activated
+      </span>
     </section>
 
-    <section id="plans">
-      <h2>Membership Tiers</h2>
-      <div class="section-subtitle">
-       Text Holder
-      </div>
+    <!-- OVERLAY BOX 2: DETAILS -->
+    <section class="overlay-box">
+      <h2>Membership Includes</h2>
 
-      <div class="grid">
-        <article class="card">
-          <div class="badge badge-green">Beginner</div>
-          <h3>Craw Baby</h3>
-          <p class="price">$0 <span>/ month</span></p>
-          <p class="muted">
-           
-          </p>
-          <ul class="hero-list">
-            <li>Intro consult with Craw</li>
-            <li> Business Hours Access </li>
-            <li> Access to 1 Craw Club special event per month </li>
-          </ul>
-        </article>
+      <ul>
+        <li>Unlimited access to Craw’s Highly Subjective Training Philosophy</li>
+        <li>Movie Bracket Cardio (emotionally demanding)</li>
+        <li>Upside-Down Overhead Bench Presses (legally questionable)</li>
+        <li>Mobility, logic puzzles, and surprise lobster references</li>
+        <li>Priority bag-lifting before international travel</li>
+      </ul>
 
-        <article class="card">
-          <div class="badge badge-gold">Most Festive</div>
-          <h3>Craw Craw </h3>
-          <p class="price">$0 <span>/ month (covered by pure chaos)</span></p>
-          <p class="muted">
-           Text Holder
-          </p>
-          <ul class="hero-list">
-            <li>Text Holder</li>
-            <li>“Text Holder</li>
-            <li>AText Holder</li>
-          </ul>
-        </article>
+      <p>
+        This entirely fictional gym operates under the guiding principle that strength is temporary,
+        but bit-based holiday chaos is forever.
+      </p>
 
-        <article class="card">
-          <div class="badge badge-red">Elite</div>
-          <h3>Craw Daddy</h3>
-          <p class="price">$0 <span>/ month</span></p>
-          <p class="muted">
-            Craw or be crawed. You've been warned.
-          </p>
-          <ul class="hero-list">
-            <li>VIP access to Mistletoe Mobility Lab</li>
-            <li>Personalized playlist of remixed holiday bangers at 150 bpm</li>
-            <li>Lifetime bragging rights &amp; honorary membership card</li>
-          </ul>
-        </article>
-      </div>
+      <p>
+        <strong>Status:</strong> You are now spiritually enrolled. There is no cancellation process.
+      </p>
     </section>
 
-    <section id="schedule">
-      <h2>Craw's Class Schedule</h2>
-      <div class="section-subtitle">
-        Times are approximate. Vibes are not.
-      </div>
+    <footer>
+      © Craw's Home Gym · All Rights Reserved · Real Website Energy, Prank Intentions
+    </footer>
 
-      <table class="schedule-table" aria-label="Class schedule">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Class</th>
-            <th>Description</th>
-            <th>Intensity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>6:00 AM</td>
-            <td>Jingle Bell HIIT</td>
-            <td>30 minutes of chaos, 30 minutes of laying on the mat rethinking everything.</td>
-            <td>🦞🦞🦞</td>
-          </tr>
-          <tr>
-            <td>10:00 AM</td>
-            <td>Holiday Market Cardio</td>
-            <td>Simulation of weaving through crowds while holding too many bags.</td>
-            <td>🦞🦞</td>
-          </tr>
-          <tr>
-            <td>2:00 PM</td>
-            <td>Cookie Curl Power Hour</td>
-            <td>Bicep curls alternated with cookie tray curls. Spotter not included.</td>
-            <td>🦞🦞🦞🦞</td>
-          </tr>
-          <tr>
-            <td>7:00 PM</td>
-            <td>Candlelit Stretch &amp; Scream</td>
-            <td>Gentle mobility plus a cathartic seasonal yell into the void.</td>
-            <td>🦞</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section id="testimonials">
-      <h2>Member Testimonials</h2>
-      <div class="section-subtitle">
-        100% of surveyed participants reported "living therefore, cheerfully, although there be no lasting joy in mortal things, whose substance is evanescent, inane, and vacuous.”
-      </div>
-
-      <div class="testimonials">
-        <article class="card">
-          <p class="quote">
-            “I will never forget the moment Craw shifted the cig to his left hand and whipped out the stylus. I appreciate the Banach Tarski video but they have nothing on Prof Craw”
-            <strong>— S. Fortier </strong>
-          </p>
-        </article>
-
-        <article class="card">
-          <p class="quote">
-            “Elvis is dead. Sinatra is dead. And ME I feel also not so good”
-            <strong>— C. Anders,  Hat</strong>
-          </p>
-        </article>
-
-        <article class="card">
-          <p class="quote">
-            “The bags are all like 40 pounds so I have never needed craws home gym more 😂’”
-            <strong>— A. McClain, pre-international field travel</strong>
-          </p>
-        </article>
-      </div>
-    </section>
   </main>
 
-  <footer>
-    <div>© Craw's Home Gym. All rights reserved in the spirit of the season.</div>
-    <div class="gift-note">
-      This entirely fictional membership was lovingly created for <strong>[RECIPIENT NAME]</strong>.
-      May your reps be light and your snacks be heavy. 
-    </div>
-  </footer>
 </body>
 </html>
