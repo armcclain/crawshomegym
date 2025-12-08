@@ -161,6 +161,34 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+    .cta-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
+.btn-primary {
+  background: #d6c25a;
+  color: #111;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+
     /* Mobile / small screens */
 @media (max-width: 800px) {
   body {
@@ -221,26 +249,35 @@
 
       <ul>
         <li>I spend so much time at Craw’s home gym that my family and friends have become strangers to me. But I’m jacked now ”</li>
+        
         <li>“I will never forget the moment Craw shifted the cig to his left hand and whipped out the stylus. I appreciate the Banach Tarski video but they have nothing on Prof Craw”</li>
+        
         <li>"Great equipment. Great staff. Excellent ambiance. Five stars.”</li>
+        
         <li>"The bags are all like 40 pounds so I have never needed craw's home gym more 😂</li>
+        
         <li>“You’ve GOTTA try the upside down overhead press bench”</li>
       </ul>
 
-      <p>
-        This entirely fictional gym operates under the guiding principle that strength is temporary,
-        but bits are forever.
-      </p>
+  
 
       <p>
         <strong>Status:</strong> You are now spiritually enrolled. There is no cancellation process.
       </p>
+
+    <div class="cta-buttons" style="margin-top: 1.5rem;">
+      <a href="#schedule" class="btn btn-primary">
+        View Today’s Class Schedule
+      </a>
+      
+</div>
+      
     </section>
 
 
   </main>
 
-  <section class="center-section">
+  <section class="center-section" id="schedule">
 
   <div class="center-box">
     <h2>Craw’s Class Schedule</h2>
