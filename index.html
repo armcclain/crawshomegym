@@ -211,6 +211,26 @@ x<!DOCTYPE html>
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     }
 
+    /* touch claw cursor for mobile */
+#touch-cursor {
+  position: fixed;
+  width: 64px;
+  height: 64px;
+  background: url("claw.png") no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  display: none;
+}
+
+/* make sure it never shows on desktop pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  #touch-cursor {
+    display: none !important;
+  }
+}
+
   /* ---------- MOBILE LAYOUT ---------- */
 @media (max-width: 800px) {
   body {
@@ -263,6 +283,8 @@ x<!DOCTYPE html>
     justify-content: center;   /* center horizontally */
     box-sizing: border-box;
   }
+
+  
 
   /* add a full-screen background gap before every panel after the first */
   .panel + .panel {
@@ -602,7 +624,7 @@ button:hover,
     · Life is short, bits are eternal ·
   </footer>
 
-  <script>
+ <script>
     (function () {
       function updateBgFromPanels() {
         const panels = document.querySelector(".mobile-panels");
@@ -634,6 +656,50 @@ button:hover,
 
       updateBgFromPanels();
     })();
+
+    // 🔻 NEW: touch claw cursor logic
+    (function () {
+      const touchCursor = document.getElementById("touch-cursor");
+      if (!touchCursor) return;
+
+      // only run on touch-capable devices
+      if (!("ontouchstart" in window)) return;
+
+      document.addEventListener(
+        "touchstart",
+        (e) => {
+          const touch = e.touches[0];
+          touchCursor.style.display = "block";
+          touchCursor.style.left = touch.clientX + "px";
+          touchCursor.style.top = touch.clientY + "px";
+          // pinch version on touch
+          touchCursor.style.backgroundImage = 'url("claw_closed.png")';
+        },
+        { passive: true }
+      );
+
+      document.addEventListener(
+        "touchmove",
+        (e) => {
+          const touch = e.touches[0];
+          touchCursor.style.left = touch.clientX + "px";
+          touchCursor.style.top = touch.clientY + "px";
+        },
+        { passive: true }
+      );
+
+      document.addEventListener(
+        "touchend",
+        () => {
+          touchCursor.style.display = "none";
+          // reset to open claw for next time
+          touchCursor.style.backgroundImage = 'url("claw.png")';
+        },
+        { passive: true }
+      );
+    })();
   </script>
+
+  <div id="touch-cursor"></div>
 </body>
 </html>
