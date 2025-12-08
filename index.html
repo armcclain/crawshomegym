@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Craw's Home Gym</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🦞</text></svg>">
 
   <style>
@@ -27,7 +27,7 @@
         ),
         url("chg.png");
       background-size: cover;
-      background-position: center;
+      background-position: center; /* desktop framing */
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: var(--text-main);
@@ -35,17 +35,25 @@
       cursor: url("claw.png") 16 16, auto;
     }
 
-    /* Desktop / default panel layout: stacked sections, centered cards */
-    .mobile-panels {
+    /* ---------- DESKTOP LAYOUT ---------- */
+
+    .desktop-site {
       display: block;
     }
 
-    .panel {
-      min-height: 100vh;
+    .mobile-panels {
+      display: none;
+    }
+
+    .max-width {
+      max-width: 1300px;
+      margin: 0 auto;
       padding: 3rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1.3fr 1.3fr; /* hero left / testimonials right */
+      gap: 2rem;
+      align-items: flex-start;
+      min-height: 100vh;
     }
 
     .overlay-box,
@@ -65,6 +73,22 @@
 
     .center-box {
       max-width: 760px;
+    }
+
+    .box-left {
+      justify-self: start;
+    }
+
+    .box-right {
+      justify-self: end;
+    }
+
+    .center-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1rem;
     }
 
     h1 {
@@ -143,7 +167,6 @@
       font-weight: 700;
     }
 
-    /* membership / schedule tables */
     .center-box table {
       width: 100%;
       border-collapse: separate;
@@ -187,7 +210,8 @@
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     }
 
-    /* Mobile / small screens */
+    /* ---------- MOBILE LAYOUT ---------- */
+
     @media (max-width: 800px) {
       body {
         background: none;
@@ -195,7 +219,7 @@
         overflow-x: hidden;
       }
 
-      /* Fixed full-screen background layer that pans */
+      /* fixed full-screen background that pans */
       body::before {
         content: "";
         position: fixed;
@@ -211,6 +235,10 @@
         background-repeat: no-repeat;
         background-position: var(--bg-x, 100%) top;
         pointer-events: none;
+      }
+
+      .desktop-site {
+        display: none;
       }
 
       .mobile-panels {
@@ -229,7 +257,7 @@
         height: 100vh;
         padding: 1.5rem 1rem 2.5rem;
         display: flex;
-        align-items: flex-end;      /* 👈 anchor to bottom */
+        align-items: flex-end;   /* bottom */
         justify-content: center;
         scroll-snap-align: start;
         box-sizing: border-box;
@@ -242,18 +270,17 @@
         padding: 1.5rem 1.25rem;
         margin: 0 0 0.5rem;
 
-        /* keep card from eating whole screen */
-        max-height: 55vh;          /* tweak 45–60 to taste */
-        overflow-y: auto;          /* scroll inside card if content taller */
+        max-height: 55vh;        /* bottom half-ish */
+        overflow-y: auto;        /* scroll inside card if needed */
       }
     }
 
-    /* Click cursor */
-    a, 
+    /* click cursor */
+    a,
     a:hover,
-    button, 
+    button,
     button:hover,
-    .btn, 
+    .btn,
     .btn:hover {
       cursor: url("claw_closed.png") 12 16, pointer !important;
     }
@@ -262,7 +289,147 @@
 
 <body>
 
-  <!-- ORDER: hero → testimonials → schedule → membership -->
+  <!-- ========== DESKTOP VERSION ========== -->
+  <div class="desktop-site">
+    <!-- hero + testimonials in one row -->
+    <main class="max-width">
+      <section class="overlay-box box-left">
+        <h1>Craw's Home Gym</h1>
+        <p>
+          Welcome to Craw's Home Gym where the guestest is always first and your gains are never last.
+          Our unique assortment of ergonomic excersises are Craw tested and Craw approved and will keep
+          you coming back time after time.
+        </p>
+
+        <div class="cta-buttons" style="margin-top: 1.5rem;">
+          <a href="#membership-desktop" class="btn btn-primary">
+            View Membership Tiers
+          </a>
+        </div>
+        
+        <p>
+          All memberships include living therefore, cheerfully, although there be no lasting joy in mortal things,
+          whose substance is evanescent, inane, and vacuous.
+        </p>
+        
+        <span class="ribbon">
+          <strong> It's simply TOO good. </strong>
+        </span>
+      </section>
+
+      <section class="overlay-box box-right">
+        <h2>Testimonials</h2>
+
+        <ul>
+          <li>I spend so much time at Craw’s home gym that my family and friends have become strangers to me. But I’m jacked now.</li>
+          <li>“I will never forget the moment Craw shifted the cig to his left hand and whipped out the stylus. I appreciate the Banach Tarski video but they have nothing on Prof Craw.”</li>
+          <li>"Great equipment. Great staff. Excellent ambiance. Five stars.”</li>
+          <li>"The bags are all like 40 pounds so I have never needed Craw's home gym more 😂"</li>
+          <li>“You’ve GOTTA try the upside down overhead press bench.”</li>
+        </ul>
+
+        <p>
+          <strong>Status:</strong> You are now spiritually enrolled. There is no cancellation process.
+        </p>
+
+        <div class="cta-buttons" style="margin-top: 1.5rem;">
+          <a href="#schedule-desktop" class="btn btn-primary">
+            View Today’s Class Schedule
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- desktop schedule -->
+    <section class="center-section" id="schedule-desktop">
+      <div class="center-box">
+        <h2>Craw’s Class Schedule</h2>
+        <table style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+          <thead>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.25);">
+              <th style="text-align:left; padding-bottom: 0.5rem;">Time</th>
+              <th style="text-align:left; padding-bottom: 0.5rem;">Class</th>
+              <th style="text-align:left; padding-bottom: 0.5rem;">Intensity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 0.55rem 0;">6:00 AM</td>
+              <td>Only Pullups</td>
+              <td>🦞🦞🦞</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.55rem 0;">10:00 AM</td>
+              <td>It's Pushups but You Stand on Your Head</td>
+              <td>🦞🦞</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.55rem 0;">2:00 PM</td>
+              <td>Upside-Down Overhead Bench</td>
+              <td>🦞🦞🦞🦞</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.55rem 0;">7:00 PM</td>
+              <td>Movie Bracket Mobility</td>
+              <td>🦞</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- desktop membership -->
+    <section class="center-section" id="membership-desktop">
+      <div class="center-box">
+        <h2>Membership Options</h2>
+
+        <p>
+          Each tier of Prof Craw's science-backed plan includes unique perks and challenges carefully calibrated
+          to suit the needs of our community.
+        </p>
+
+        <table style="width:100%; border-collapse: collapse; font-size: 0.95rem;">
+          <thead>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.25);">
+              <th style="text-align:left; padding-bottom: 0.5rem;">Tier</th>
+              <th style="text-align:left; padding-bottom: 0.5rem;">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Craw's Slug Club</td>
+              <td style="line-height: 1.7;">
+                Sometimes, you just gotta be a slug.
+                <strong>Perks:</strong> Unlimited access to Craw's finest floor mats, and kinesiologist approved couches.
+                <strong>Challenges:</strong> No sitting in regular chairs for the duration of membership.
+              </td>
+            </tr>
+
+            <tr>
+              <td>Craw's Barre Crawl</td>
+              <td style="line-height: 1.7;">
+                Calisthenics, it's what's for dinner!
+                <strong>Perks:</strong> If you've ever wanted to hear Tracy Chapman's <i>Fast Car</i> as a club remix, we've got your back!
+                <strong>Challenges:</strong> You aren't allowed to correct your friends and family who think you're going on a Bar Crawl 3 times a week.
+              </td>
+            </tr>
+
+            <tr>
+              <td>Hardcore Craw</td>
+              <td style="line-height: 1.7;">
+                Do you have what it takes to become the ultimate Craw? At this level you'll gain access to our toughest challenges.
+                <strong>Perks:</strong> free headset included!
+                <strong>Challenges:</strong> You'll undergo the full gauntlet of Craw's toughest excercises while
+                <i>Hardcore Henry</i> streams continuously in one ear and Prof Craw gives you math problems to solve in the other.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== MOBILE VERSION (SWIPE PANELS) ========== -->
   <div class="mobile-panels">
     <!-- PANEL 1: HERO -->
     <section class="panel panel-hero">
@@ -275,7 +442,7 @@
         </p>
 
         <div class="cta-buttons" style="margin-top: 1.5rem;">
-          <a href="#membership" class="btn btn-primary">
+          <a href="#membership-mobile" class="btn btn-primary">
             View Membership Tiers
           </a>
         </div>
@@ -309,7 +476,7 @@
         </p>
 
         <div class="cta-buttons" style="margin-top: 1.5rem;">
-          <a href="#schedule" class="btn btn-primary">
+          <a href="#schedule-mobile" class="btn btn-primary">
             View Today’s Class Schedule
           </a>
         </div>
@@ -317,7 +484,7 @@
     </section>
 
     <!-- PANEL 3: SCHEDULE -->
-    <section class="panel panel-schedule" id="schedule">
+    <section class="panel panel-schedule" id="schedule-mobile">
       <div class="center-box">
         <h2>Craw’s Class Schedule</h2>
 
@@ -355,8 +522,8 @@
       </div>
     </section>
 
-    <!-- PANEL 4: MEMBERSHIP (LAST) -->
-    <section class="panel panel-membership" id="membership">
+    <!-- PANEL 4: MEMBERSHIP -->
+    <section class="panel panel-membership" id="membership-mobile">
       <div class="center-box">
         <h2>Membership Options</h2>
 
