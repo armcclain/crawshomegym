@@ -211,70 +211,88 @@
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     }
 
-    /* ---------- MOBILE LAYOUT ---------- */
+  /* ---------- MOBILE LAYOUT ---------- */
+@media (max-width: 800px) {
+  body {
+    background: none;
+    position: relative;
+    overflow-x: hidden;
+  }
 
-    @media (max-width: 800px) {
-      body {
-        background: none;
-        position: relative;
-        overflow-x: hidden;
-      }
+  /* fixed full-screen background that pans */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.15)
+      ),
+      url("chg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: var(--bg-x, 100%) top;
+    pointer-events: none;
+  }
 
-      /* fixed full-screen background that pans */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background:
-          linear-gradient(
-            rgba(255, 255, 255, 0.15),
-            rgba(255, 255, 255, 0.15)
-          ),
-          url("chg.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: var(--bg-x, 100%) top;
-        pointer-events: none;
-      }
+  .desktop-site {
+    display: none;
+  }
 
-      .desktop-site {
-        display: none;
-      }
+  .mobile-panels {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;          /* horizontal scroll */
+    overflow-y: hidden;
+    width: 100vw;
+    height: 100vh;
+    gap: 1rem;                 /* space between panels so bg peeks through */
+    padding: 1.5rem 0 2.5rem;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: none;    /* no snapping – continuous scroll */
+  }
 
-      .mobile-panels {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        width: 100vw;
-        height: 100vh;
-        -webkit-overflow-scrolling: touch;
-      }
+  .panel {
+    flex: 0 0 85vw;            /* slightly narrower than full width */
+    height: 100%;
+    padding: 1.5rem 1rem 2.5rem;
+    display: flex;
+    align-items: flex-end;     /* keep card near bottom */
+    justify-content: center;
+    box-sizing: border-box;
+  }
 
-      .panel {
-        flex: 0 0 100vw;
-        height: 100vh;
-        padding: 1.5rem 1rem 2.5rem;
-        display: flex;
-        align-items: flex-end;   /* bottom */
-        justify-content: center;
-        scroll-snap-align: start;
-        box-sizing: border-box;
-      }
+  .overlay-box,
+  .center-box {
+    width: 100%;
+    max-width: 480px;
+    padding: 1.5rem 1.25rem;
+    margin: 0 0 0.5rem;
 
-      .overlay-box,
-      .center-box {
-        width: 100%;
-        max-width: 480px;
-        padding: 1.5rem 1.25rem;
-        margin: 0 0 0.5rem;
+    /* more of the background visible through the card */
+    background: rgba(8, 8, 20, 0.78);
+    backdrop-filter: blur(6px);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(214, 194, 90, 0.7);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.85);
 
-        max-height: 55vh;        /* bottom half-ish */
-        overflow-y: auto;        /* scroll inside card if needed */
-      }
-    }
+    max-height: none;          /* let content flow */
+    overflow-y: visible;
+  }
+}
+
+/* click cursor */
+a,
+a:hover,
+button,
+button:hover,
+.btn,
+.btn:hover {
+  cursor: url("claw_closed.png") 12 16, pointer !important;
+}
+
 
     /* click cursor */
     a,
